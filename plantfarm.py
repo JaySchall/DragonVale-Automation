@@ -5,6 +5,8 @@ import time
 
 index = 0
 threshold = 0.8
+
+#put images names in the correct order in the images array, include file extensions
 images = ["put", "images", "here"]
 while True:
     if index > len(images) - 1:
@@ -17,7 +19,7 @@ while True:
     frame = np.array(screenshot)
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    # Perform symbol detection (e.g., template matching)
+    # Perform symbol detection (template matching)
     result = cv2.matchTemplate(frame, symbol_image, cv2.TM_CCOEFF_NORMED)
 
     loc = np.where(result >= threshold)
@@ -30,10 +32,12 @@ while True:
         # Adjusted x and y coordinate to center
         x_center = x + symbol_width // 2  
         y_center = y + symbol_height // 2  
-
         pyautogui.click(x_center, y_center)
 
-        # Exit if 'q' key is pressed
+        #may want to add a delay here with time.sleep
+
+
+    # Exit if 'q' key is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
