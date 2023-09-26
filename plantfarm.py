@@ -33,7 +33,7 @@ while True:
         x_center = x + symbol_width // 2  
         y_center = y + symbol_height // 2  
         pyautogui.click(x_center, y_center)
-
+        index += 1
         #may want to add a delay here with time.sleep
 
 
