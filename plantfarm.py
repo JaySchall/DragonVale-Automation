@@ -13,11 +13,12 @@ while True:
         index = 0
     print(images[index] + "\n")
     symbol_image = cv2.imread(images[index])
-    
+    symbol_image = symbol_image.astype(np.uint8)
     # Capture the screen using pyautogui
     screenshot = pyautogui.screenshot()
     frame = np.array(screenshot)
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    frame = frame.astype(np.uint8)
 
     # Perform symbol detection (template matching)
     result = cv2.matchTemplate(frame, symbol_image, cv2.TM_CCOEFF_NORMED)
